@@ -1,7 +1,7 @@
+using Debug;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Debug
+namespace Editor.Debug
 {
     [ExecuteInEditMode]
     public class DebugOnScreen : DebugGUI
