@@ -31,7 +31,7 @@ public class characterJump : MonoBehaviour
     [Tooltip("Should the character drop when you let go of jump?")] public bool variablejumpHeight;
     [SerializeField, Range(1f, 10f)][Tooltip("Gravity multiplier when you let go of jump")] public float jumpCutOff;
     [SerializeField][Tooltip("The fastest speed the character can fall")] public float speedLimit;
-    [SerializeField, Range(0f, 0.3f)][Tooltip("How long should coyote time last?")] public float coyoteTime = 0.15f;
+    [Tooltip("How long should coyote time last?")] public float coyoteTime = 0.15f;
     [SerializeField, Range(0f, 0.3f)][Tooltip("How far from ground should we cache your jump?")] public float jumpBuffer = 0.15f;
 
     [Header("Calculations")]
