@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace _Intermediate
+namespace _Advanced
 {
     public class PlayerJump : MonoBehaviour
     {

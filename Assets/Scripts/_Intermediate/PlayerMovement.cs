@@ -1,102 +1,67 @@
-using System;
 using UnityEngine;
 
 namespace _Intermediate
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Header("Movement Stats")]
-        [SerializeField] [Range(0f, 20f)]  private float maxSpeed = 10f;
-        [SerializeField] [Range(0f, 100f)] private float maxAcceleration = 52f;
-        [SerializeField] [Range(0f, 100f)] private float maxDeceleration = 52f;
-        [SerializeField] [Range(0f, 100f)] private float maxTurnSpeed = 80f;
-        [SerializeField] [Range(0f, 100f)] private float maxAirAcceleration;
-        [SerializeField] [Range(0f, 100f)] private float maxAirDeceleration;
-        [SerializeField] [Range(0f, 100f)] private float maxAirTurnSpeed = 80f;
-        [SerializeField] private float friction;
+        [Header("Movement")]
+        public float maxMoveSpeed = 6f;
+        public float acceleration = 1f;
+        public float groundFriction = .3f;
+        private float _moveSpeed;
+        private Vector2 _velocity;
+         
+        [Header("Jumping")]
+        public float jumpSpeed = 10f;
+        public float airFriction = 0.005f;
 
-        [Header("Options")]
-        public Vector2 velocity;
-        private Vector2 _desiredVelocity;
-        private float _maxSpeedChange;
-        private float _acceleration;
-        private float _deceleration;
-        private float _turnSpeed;
         
-        /* COMPONENTS */
-        private Rigidbody2D _rigidbody2D;
+        [Header("Components")]
         private PlayerInput _input;
         private PlayerCollision _collision;
-
-        public bool onGround;
-        public bool pressingKey;
-
-        private void Awake()
+        private Rigidbody2D _rigidbody2D;
+        
+        private void Start()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
             _input = GetComponent<PlayerInput>();
             _collision = GetComponent<PlayerCollision>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
+       
         private void Update()
         {
-            if (_input.MoveDirection.x != 0)
+            if (!_collision.IsGroundedBox()) return;
+
+            if (_input.JumpPressed)
             {
-                transform.localScale = new Vector3(_input.MoveDirection.x > 0f ? 1f : -1f, 1f, 1f);
-                pressingKey = true;
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
             }
-            else
-            {
-                pressingKey = false;
-            }
-            _desiredVelocity = new Vector2(_input.MoveDirection.x, 0f) * Mathf.Max(maxSpeed - friction, 0f);
         }
 
         private void FixedUpdate()
         {
-            onGround = _collision.IsGrounded();
-            velocity = _rigidbody2D.velocity;
+            _velocity = _rigidbody2D.velocity;
+            
+            UpdateMovementSpeed();
 
-            if (onGround)
+            _rigidbody2D.velocity = _velocity;
+        }
+
+        private void UpdateMovementSpeed()
+        {
+            if (_input.MoveVector.x != 0)
             {
-                RunWithoutAcceleration();
+                _moveSpeed += _input.MoveVector.x * acceleration;
+                _moveSpeed = Mathf.Clamp(_moveSpeed, -maxMoveSpeed, maxMoveSpeed);
             }
             else
             {
-                RunWithAcceleration();
-            }
-        }
-
-        private void RunWithAcceleration()
-        {
-            _acceleration = onGround ? maxAcceleration : maxAirAcceleration;
-            _deceleration = onGround ? maxDeceleration : maxAirDeceleration;
-            _turnSpeed = onGround ? maxTurnSpeed : maxAirTurnSpeed;
-
-            if (pressingKey)
-            {
-                if (Mathf.Sign(_input.MoveDirection.x) != Mathf.Sign(velocity.x))
-                {
-                    _maxSpeedChange = _turnSpeed * Time.deltaTime;
-                }
-                else
-                {
-                    _maxSpeedChange = _acceleration * Time.deltaTime;
-                }
-            }
-            else
-            {
-                _maxSpeedChange = _deceleration * Time.deltaTime;
+                _moveSpeed = Mathf.Lerp(_moveSpeed, 0, _collision.IsGroundedBox() ? groundFriction : airFriction);
             }
 
-            velocity.x = Mathf.MoveTowards(velocity.x, _desiredVelocity.x, _maxSpeedChange);
-            _rigidbody2D.velocity = velocity;
-        }
-        private void RunWithoutAcceleration()
-        {
-            velocity.x = _desiredVelocity.x;
+            _velocity.x = _moveSpeed;
 
-            _rigidbody2D.velocity = velocity;
         }
     }
 }

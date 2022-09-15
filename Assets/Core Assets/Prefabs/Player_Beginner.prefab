@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3693586126255469124}
-  - component: {fileID: 3693586126255469122}
-  - component: {fileID: 3693586126255469120}
-  - component: {fileID: 3693586126255469121}
+  - component: {fileID: 4262676794221229366}
+  - component: {fileID: 7162448297253403882}
+  - component: {fileID: 6106853996167252542}
   - component: {fileID: 3693586126255469125}
   - component: {fileID: 3693586126255469119}
   - component: {fileID: 3693586126255469118}
@@ -37,9 +37,9 @@ Transform:
   - {fileID: 3693586127172444948}
   - {fileID: 3693586126354259971}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3693586126255469122
+--- !u!114 &4262676794221229366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,12 +48,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3693586126255469127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256244e3fbf284637a4e76974074f354, type: 3}
+  m_Script: {fileID: 11500000, guid: 3db8a511dc7f5474e90149b95da2d48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
-  jumpSpeed: 10
---- !u!114 &3693586126255469120
+--- !u!114 &7162448297253403882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,25 +60,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 3693586126255469127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24de652c2286445e6b977dcfa6dd166e, type: 3}
+  m_Script: {fileID: 11500000, guid: 99c428b1fabda4248a300a3c1cf00b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMoveSpeed: 6
+  acceleration: 0.3
+  groundFriction: 0.1
+  jumpSpeed: 10
+  airFriction: 0.005
+--- !u!114 &6106853996167252542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693586126255469127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998a03708e0714caab040ce5a8fffbf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckRange: 1.1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &3693586126255469121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3693586126255469127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ca9d95668c204830b3a42d25ba40f7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &3693586126255469125
 Rigidbody2D:
   serializedVersion: 4
