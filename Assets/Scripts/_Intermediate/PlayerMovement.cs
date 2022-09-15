@@ -14,6 +14,9 @@ namespace _Intermediate
         [Header("Jumping")]
         public float jumpSpeed = 10f;
         public float airFriction = 0.005f;
+        public float coyoteTime = 0.15f;
+        private bool _isJumping;
+        private float _coyoteTimeCounter;
 
         
         [Header("Components")]
@@ -31,36 +34,54 @@ namespace _Intermediate
        
         private void Update()
         {
-            if (!_collision.IsGroundedBox()) return;
 
-            if (_input.JumpPressed)
+            if (!_isJumping && !_collision.IsGroundedBox())
             {
+                _coyoteTimeCounter += Time.deltaTime;
+            }
+            else
+            {
+                _coyoteTimeCounter = 0;
+            }
+            
+            
+            if (_input.JumpPressed && (_collision.IsGroundedBox() || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime)))
+            {
+                print($" I am grounded? {_collision.IsGroundedBox()}");
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
+                _isJumping = true;
             }
         }
 
         private void FixedUpdate()
         {
-            _velocity = _rigidbody2D.velocity;
+            UpdateMovement();
             
-            UpdateMovementSpeed();
-
-            _rigidbody2D.velocity = _velocity;
+            if (_collision.IsGroundedBox())
+            {
+                _isJumping = false;
+            }
         }
 
-        private void UpdateMovementSpeed()
+        private void UpdateMovement()
         {
-            if (_input.MoveVector.x != 0)
-            {
-                _moveSpeed += _input.MoveVector.x * acceleration;
-                _moveSpeed = Mathf.Clamp(_moveSpeed, -maxMoveSpeed, maxMoveSpeed);
-            }
-            else
-            {
-                _moveSpeed = Mathf.Lerp(_moveSpeed, 0, _collision.IsGroundedBox() ? groundFriction : airFriction);
-            }
+            _velocity = _rigidbody2D.velocity;
 
-            _velocity.x = _moveSpeed;
+            #region Update MoveSpeed
+                if (_input.MoveVector.x != 0)
+                {
+                    _moveSpeed += _input.MoveVector.x * acceleration;
+                    _moveSpeed = Mathf.Clamp(_moveSpeed, -maxMoveSpeed, maxMoveSpeed);
+                }
+                else
+                {
+                    _moveSpeed = Mathf.Lerp(_moveSpeed, 0, _collision.IsGroundedBox() ? groundFriction : airFriction);
+                }
+
+                _velocity.x = _moveSpeed;
+            #endregion
+            
+            _rigidbody2D.velocity = _velocity;
 
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,11 +8,17 @@ namespace _Intermediate
     {
         [SerializeField] private float groundCheckRange = 1.1f;
         [SerializeField] private LayerMask whatIsGround;
+        [SerializeField] private bool isGrounded;
         private CapsuleCollider2D _capsuleCollider2D;
 
         private void Start()
         {
             _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        }
+
+        private void Update()
+        {
+            isGrounded = IsGroundedBox();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
