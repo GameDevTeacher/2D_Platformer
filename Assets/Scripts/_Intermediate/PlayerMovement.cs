@@ -4,6 +4,8 @@ namespace _Intermediate
 {
     public class PlayerMovement : MonoBehaviour
     {
+        #region VARIABLES
+
         [Header("Movement")]
         public float maxMoveSpeed = 6f;
         public float acceleration = 1f;
@@ -16,6 +18,9 @@ namespace _Intermediate
         public float airFriction = 0.005f;
         public float coyoteTime = 0.15f;
         public float maxVelocityY = 16;
+        public int maxDoubleJumpValue = 2;
+        private int _doubleJumpValue;
+        
         private bool _isJumping;
         private float _coyoteTimeCounter;
 
@@ -24,15 +29,19 @@ namespace _Intermediate
         private PlayerInput _input;
         private PlayerCollision _collision;
         private Rigidbody2D _rigidbody2D;
+
+        #endregion
         
+
+        #region EVENT FUNCTIONS
+
         private void Start()
         {
             _input = GetComponent<PlayerInput>();
             _collision = GetComponent<PlayerCollision>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
-
-       
+        
         private void Update()
         {
             // Added CoyoteTime
@@ -43,7 +52,7 @@ namespace _Intermediate
         
         private void FixedUpdate()
         {
-            // Acceleration & Friction & Air Friction
+            // Acceleration & Friction & Air Friction && Double Jump
             UpdateMovement();
             
             
@@ -51,9 +60,16 @@ namespace _Intermediate
             if (_collision.IsGroundedBox())
             {
                 _isJumping = false;
+                _doubleJumpValue = maxDoubleJumpValue;
             }
         }
 
+        #endregion
+
+
+        #region GENERAL FUNCTIONS
+
+        
         private void UpdateGravity()
         {
             _velocity.y = Mathf.Clamp(_rigidbody2D.velocity.y, -maxVelocityY, maxVelocityY);
@@ -61,6 +77,7 @@ namespace _Intermediate
 
         private void UpdateJumping()
         {
+            // Set CoyoteTimer
             if (!_isJumping && !_collision.IsGroundedBox())
             {
                 _coyoteTimeCounter += Time.deltaTime;
@@ -70,11 +87,14 @@ namespace _Intermediate
                 _coyoteTimeCounter = 0;
             }
 
-
-            if (_input.JumpPressed && (_collision.IsGroundedBox() || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime)))
+            // Check if We are able to jump
+            if (_input.JumpPressed && (_collision.IsGroundedBox() 
+                                       || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime) 
+                                       || _doubleJumpValue > 0))
             {
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
-                
+
+                _doubleJumpValue--;
                 _isJumping = true;
             }
         }
@@ -82,26 +102,27 @@ namespace _Intermediate
 
         private void UpdateMovement()
         {
-            // Store the Players Velocity in Seperate Vector2
+            // Store the Players Velocity in Separate Vector2
             _velocity = _rigidbody2D.velocity;
             UpdateGravity();
 
             #region UPDATE MOVESPEED 
-                if (_input.MoveVector.x != 0)
-                {
-                    _moveSpeed += _input.MoveVector.x * acceleration;
-                    _moveSpeed = Mathf.Clamp(_moveSpeed, -maxMoveSpeed, maxMoveSpeed);
-                }
-                else
-                {
-                    _moveSpeed = Mathf.Lerp(_moveSpeed, 0, _collision.IsGroundedBox() ? groundFriction : airFriction);
-                }
+            if (_input.MoveDirection.x != 0)
+            {
+                _moveSpeed += _input.MoveDirection.x * acceleration;
+                _moveSpeed = Mathf.Clamp(_moveSpeed, -maxMoveSpeed, maxMoveSpeed);
+            }
+            else
+            {
+                _moveSpeed = Mathf.Lerp(_moveSpeed, 0, _collision.IsGroundedBox() ? groundFriction : airFriction);
+            }
 
-                _velocity.x = _moveSpeed;
+            _velocity.x = _moveSpeed;
             #endregion
             
             _rigidbody2D.velocity = _velocity;
-
         }
+
+        #endregion
     }
 }

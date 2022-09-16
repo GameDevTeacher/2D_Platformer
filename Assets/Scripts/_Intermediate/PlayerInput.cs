@@ -17,8 +17,8 @@ namespace _Intermediate
 
         #region INPUT VARIABLES
         
-        public Vector2 MoveVector { get; private set; }
-        public Vector2 LookVector { get; private set; }
+        public Vector2 MoveDirection { get; private set; }
+        public Vector2 LookDirection { get; private set; }
         
         public float JumpValue { get; private set; }
         public bool JumpHeld { get; private set; }
@@ -34,8 +34,8 @@ namespace _Intermediate
         
         private void Update()
         {
-            MoveVector = _inputActions.Player.Move.ReadValue<Vector2>();
-            LookVector = _inputActions.Player.Look.ReadValue<Vector2>();
+            MoveDirection = _inputActions.Player.Move.ReadValue<Vector2>();
+            LookDirection = _inputActions.Player.Look.ReadValue<Vector2>();
             
             JumpValue = _inputActions.Player.Jump.ReadValue<float>();
             JumpHeld = _inputActions.Player.Jump.inProgress;
