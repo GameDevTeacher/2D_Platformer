@@ -34,7 +34,24 @@ namespace _Intermediate
        
         private void Update()
         {
+            // Added CoyoteTime
+            UpdateJumping();
+        }
+        
+        private void FixedUpdate()
+        {
+            // Acceleration & Friction & Air Friction
+            UpdateMovement();
+            
+            // CoyoteTime
+            if (_collision.IsGroundedBox())
+            {
+                _isJumping = false;
+            }
+        }
 
+        private void UpdateJumping()
+        {
             if (!_isJumping && !_collision.IsGroundedBox())
             {
                 _coyoteTimeCounter += Time.deltaTime;
@@ -43,25 +60,17 @@ namespace _Intermediate
             {
                 _coyoteTimeCounter = 0;
             }
-            
-            
-            if (_input.JumpPressed && (_collision.IsGroundedBox() || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime)))
+
+
+            if (_input.JumpPressed && (_collision.IsGroundedBox() || 
+                                       (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime)))
             {
-                print($" I am grounded? {_collision.IsGroundedBox()}");
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
+                
                 _isJumping = true;
             }
         }
 
-        private void FixedUpdate()
-        {
-            UpdateMovement();
-            
-            if (_collision.IsGroundedBox())
-            {
-                _isJumping = false;
-            }
-        }
 
         private void UpdateMovement()
         {
