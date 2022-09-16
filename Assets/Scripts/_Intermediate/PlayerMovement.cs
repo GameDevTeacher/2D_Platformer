@@ -15,6 +15,7 @@ namespace _Intermediate
         public float jumpSpeed = 10f;
         public float airFriction = 0.005f;
         public float coyoteTime = 0.15f;
+        public float maxVelocityY = 16;
         private bool _isJumping;
         private float _coyoteTimeCounter;
 
@@ -36,6 +37,8 @@ namespace _Intermediate
         {
             // Added CoyoteTime
             UpdateJumping();
+            
+            print(_rigidbody2D.velocity.y);
         }
         
         private void FixedUpdate()
@@ -43,11 +46,17 @@ namespace _Intermediate
             // Acceleration & Friction & Air Friction
             UpdateMovement();
             
+            
             // CoyoteTime
             if (_collision.IsGroundedBox())
             {
                 _isJumping = false;
             }
+        }
+
+        private void UpdateGravity()
+        {
+            _velocity.y = Mathf.Clamp(_rigidbody2D.velocity.y, -maxVelocityY, maxVelocityY);
         }
 
         private void UpdateJumping()
@@ -62,8 +71,7 @@ namespace _Intermediate
             }
 
 
-            if (_input.JumpPressed && (_collision.IsGroundedBox() || 
-                                       (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime)))
+            if (_input.JumpPressed && (_collision.IsGroundedBox() || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime)))
             {
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
                 
@@ -74,9 +82,11 @@ namespace _Intermediate
 
         private void UpdateMovement()
         {
+            // Store the Players Velocity in Seperate Vector2
             _velocity = _rigidbody2D.velocity;
+            UpdateGravity();
 
-            #region Update MoveSpeed
+            #region UPDATE MOVESPEED 
                 if (_input.MoveVector.x != 0)
                 {
                     _moveSpeed += _input.MoveVector.x * acceleration;
