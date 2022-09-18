@@ -211,7 +211,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.140625
+  orthographic size: 16.28125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 32
+  m_AssetsPPU: 16
   m_RefResolutionX: 1920
   m_RefResolutionY: 1080
   m_CropFrame: 0
@@ -474,6 +474,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3693586126255469125, guid: 51bac689815904337ad0c5bb68e51970, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3693586126255469127, guid: 51bac689815904337ad0c5bb68e51970, type: 3}
       propertyPath: m_Name
       value: Player_Intermediate
@@ -484,11 +488,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7162448297253403882, guid: 51bac689815904337ad0c5bb68e51970, type: 3}
       propertyPath: maxMoveSpeed
-      value: 12
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162448297253403882, guid: 51bac689815904337ad0c5bb68e51970, type: 3}
+      propertyPath: AirAcceleration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162448297253403882, guid: 51bac689815904337ad0c5bb68e51970, type: 3}
+      propertyPath: airAcceleration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162448297253403882, guid: 51bac689815904337ad0c5bb68e51970, type: 3}
+      propertyPath: maxAirMoveSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7162448297253403882, guid: 51bac689815904337ad0c5bb68e51970, type: 3}
       propertyPath: maxDoubleJumpValue
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

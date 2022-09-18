@@ -19,9 +19,12 @@ namespace _Intermediate
         public float coyoteTime = 0.15f;
         public float maxVelocityY = 16;
         public int maxDoubleJumpValue = 2;
-        private int _doubleJumpValue;
         
-        private bool _isJumping;
+        public float _jumpTimeCounter;
+        public float jumpTime = 0.25f;
+        
+        private int _doubleJumpValue;
+        public bool _isJumping;
         private float _coyoteTimeCounter;
 
         
@@ -45,9 +48,9 @@ namespace _Intermediate
         private void Update()
         {
             // Added CoyoteTime
+            LongJump();
             UpdateJumping();
             
-            print(_rigidbody2D.velocity.y);
         }
         
         private void FixedUpdate()
@@ -57,7 +60,7 @@ namespace _Intermediate
             
             
             // CoyoteTime
-            if (_collision.IsGroundedBox())
+            if (_collision.IsGroundedBox() && _rigidbody2D.velocity.y < 0f )
             {
                 _isJumping = false;
                 _doubleJumpValue = maxDoubleJumpValue;
@@ -77,6 +80,10 @@ namespace _Intermediate
 
         private void UpdateJumping()
         {
+
+            // TODO: Add More Fine Tuned Gravity
+            
+            
             // Set CoyoteTimer
             if (!_isJumping && !_collision.IsGroundedBox())
             {
@@ -86,15 +93,14 @@ namespace _Intermediate
             {
                 _coyoteTimeCounter = 0;
             }
+            
 
             // Check if We are able to jump
-            if (_input.JumpPressed && (_collision.IsGroundedBox() 
-                                       || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime) 
-                                       || _doubleJumpValue > 0))
+            if (_input.JumpPressed && (_collision.IsGroundedBox() || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime) || _doubleJumpValue > 0))
             {
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
-
                 _doubleJumpValue--;
+                _jumpTimeCounter = jumpTime;
                 _isJumping = true;
             }
         }
@@ -107,7 +113,7 @@ namespace _Intermediate
             UpdateGravity();
 
             #region UPDATE MOVESPEED 
-            if (_input.MoveDirection.x != 0)
+            if (_input.MoveDirection.x != 0 /* // Only used if we have air control&& _collision.IsGroundedBox()*/)
             {
                 _moveSpeed += _input.MoveDirection.x * acceleration;
                 _moveSpeed = Mathf.Clamp(_moveSpeed, -maxMoveSpeed, maxMoveSpeed);
@@ -121,6 +127,26 @@ namespace _Intermediate
             #endregion
             
             _rigidbody2D.velocity = _velocity;
+        }
+
+        private void LongJump()
+        {
+            if (_input.JumpValue > 0f && _isJumping)
+            {
+                if (_jumpTimeCounter > 0)
+                {
+                    _rigidbody2D.velocity = Vector2.up *jumpSpeed;
+                    _jumpTimeCounter -= Time.deltaTime;
+                }
+                else
+                {
+                    _isJumping = false;
+                }
+            }
+            if (_input.JumpValue <= 0f)
+            {
+                _isJumping = false;
+            }
         }
 
         #endregion
