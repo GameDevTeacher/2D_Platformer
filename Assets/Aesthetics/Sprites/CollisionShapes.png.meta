@@ -107,54 +107,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CollisionShapes_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc18aee834f714a03968911ee0aa8109
-      internalID: 1626243789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CollisionShapes_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: a32517ffa6c5c4f258d61786a8fb9c0d
-      internalID: -733009389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: CollisionShapes_2
       rect:
         serializedVersion: 2
@@ -175,8 +127,8 @@ TextureImporter:
         - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: d86042de1dd9f4ddba6cfa61ea4fd0dc
-      internalID: 706718265
+      spriteID: 4d6fb39f10345431faa7be205a0b405f
+      internalID: -882106381
       vertices: []
       indices: 
       edges: []
@@ -202,8 +154,8 @@ TextureImporter:
         - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: 754e22d4a9be3405e985b9c3f63d2e9e
-      internalID: 1201238952
+      spriteID: 7eb4ac2759f2c47d9b8ed1160947a547
+      internalID: -1976138829
       vertices: []
       indices: 
       edges: []
@@ -221,43 +173,14 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 16}
-        - {x: -16, y: 10}
-        - {x: 16, y: 10}
-        - {x: 16, y: 16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: b20aef031ae7041c18cec746d2d050e6
-      internalID: 639062886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CollisionShapes_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -10, y: -16}
-        - {x: -10, y: 16}
-        - {x: -16, y: 16}
-        - {x: -16, y: -16}
-      - - {x: 10, y: 16}
-        - {x: 10, y: -16}
+      - - {x: -16, y: -16}
         - {x: 16, y: -16}
-        - {x: 16, y: 16}
+        - {x: 16, y: -10}
+        - {x: -16, y: -10}
       tessellationDetail: 0
       bones: []
-      spriteID: e68d007c984344be3b966d4f48a9ad42
-      internalID: 1491757476
+      spriteID: 75a92eae49ebb46d9ad7909eeea66fb1
+      internalID: 298034300
       vertices: []
       indices: 
       edges: []
@@ -275,18 +198,14 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: -9, y: -16}
-        - {x: -9, y: 10}
-        - {x: 10, y: 10}
+      - - {x: 10, y: 16}
         - {x: 10, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: 6c5b8d483e99e42f4bc0fe5dd0ca0931
-      internalID: 236879508
+      spriteID: a59e918c1c3f34402a2304aec2fcc7c5
+      internalID: 639856317
       vertices: []
       indices: 
       edges: []
@@ -310,131 +229,8 @@ TextureImporter:
         - {x: -16, y: -16}
       tessellationDetail: 0
       bones: []
-      spriteID: e28ef2b9763b34a84b84f5334346712a
-      internalID: -1498652671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CollisionShapes_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: 10, y: 16}
-        - {x: 10, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 801b891f3da1f452ca7ce1013086f040
-      internalID: -1824703564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CollisionShapes_9
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: 10, y: 16}
-        - {x: 10, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: af5a7e2a0df09499396b0ea06ea90aa2
-      internalID: 435587123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CollisionShapes_10
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -10, y: -16}
-        - {x: -10, y: 16}
-        - {x: -16, y: 16}
-        - {x: -16, y: -16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 04f2d130bb0864f91ad78c609259183c
-      internalID: -904683985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CollisionShapes_11
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 436ee1d321e4c49f6baf12e679e1dc4d
-      internalID: 216996991
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CollisionShapes_12
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd0417637caed430886e8f8f4742638e
-      internalID: -666212540
+      spriteID: eb9f35b57f99d43f6a461c09de8428f1
+      internalID: 1874463378
       vertices: []
       indices: 
       edges: []
@@ -453,12 +249,15 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -16, y: 16}
+        - {x: -16, y: -16}
         - {x: 16, y: -16}
-        - {x: 16, y: 16}
+        - {x: 16, y: -10}
+        - {x: -10, y: -10}
+        - {x: -10, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: cb9288a90f5d24c21ab9493465edb4ab
-      internalID: 1180190687
+      spriteID: aec524dce6dcd4457ae97a6a0acb2959
+      internalID: -4230305
       vertices: []
       indices: 
       edges: []
@@ -476,13 +275,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 16}
+      - - {x: 10, y: 16}
+        - {x: 10, y: -10}
+        - {x: -16, y: -10}
         - {x: -16, y: -16}
+        - {x: 16, y: -16}
         - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: df2cfcb23a335456dac104fc081edcff
-      internalID: -1100358253
+      spriteID: e96f30ccfedb64ea48ae93181df0e080
+      internalID: 490175180
       vertices: []
       indices: 
       edges: []
@@ -501,12 +303,13 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -16, y: 16}
-        - {x: -16, y: -16}
+        - {x: -16, y: 10}
+        - {x: 16, y: 10}
         - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: af89393d84b0740be8db3314b36cd250
-      internalID: 965449015
+      spriteID: fea2a7b4db81843bba8a42b21e620a93
+      internalID: 302749992
       vertices: []
       indices: 
       edges: []
@@ -524,13 +327,14 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      - - {x: -16, y: -3}
+        - {x: 16, y: -3}
+        - {x: 16, y: 3}
+        - {x: -16, y: 3}
       tessellationDetail: 0
       bones: []
-      spriteID: 8106dcb23f65b4c5db674bea5cc80128
-      internalID: -181369073
+      spriteID: dee9d8d221f264a7685f980aba1241f3
+      internalID: 140900910
       vertices: []
       indices: 
       edges: []
@@ -548,20 +352,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: -10}
-        - {x: -16, y: -10}
+      - - {x: 3, y: -16}
+        - {x: 3, y: 16}
+        - {x: -3, y: 16}
+        - {x: -3, y: -16}
       tessellationDetail: 0
       bones: []
-      spriteID: ca65e953318ec4cb38b37820483aca38
-      internalID: 1689574628
+      spriteID: 354c70481e8e74fc5b476d2e69585f48
+      internalID: -1061902087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CollisionShapes_18
+      name: CollisionShapes_0
       rect:
         serializedVersion: 2
         x: 224
@@ -573,43 +377,18 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
+      - - {x: -16, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: -10}
-        - {x: -10, y: -10}
-        - {x: -10, y: 16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb27f505aaa66496d8f8cc2deae2823a
-      internalID: -999151629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CollisionShapes_19
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: 10, y: 16}
-        - {x: 10, y: -10}
         - {x: -16, y: -10}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
+      - - {x: -16, y: 16}
+        - {x: -16, y: 10}
+        - {x: 16, y: 10}
         - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: 610dc02931ee04653a3e816f13bad9b7
-      internalID: 2026812979
+      spriteID: 7e753f74212954515b3d833de2adc3e7
+      internalID: -962152155
       vertices: []
       indices: 
       edges: []
@@ -625,26 +404,28 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CollisionShapes_10: -904683985
-      CollisionShapes_11: 216996991
-      CollisionShapes_2: 706718265
-      CollisionShapes_4: 639062886
-      CollisionShapes_14: -1100358253
-      CollisionShapes_17: 1689574628
-      CollisionShapes_8: -1824703564
-      CollisionShapes_9: 435587123
-      CollisionShapes_19: 2026812979
-      CollisionShapes_15: 965449015
-      CollisionShapes_3: 1201238952
-      CollisionShapes_16: -181369073
-      CollisionShapes_6: 236879508
-      CollisionShapes_7: -1498652671
-      CollisionShapes_12: -666212540
-      CollisionShapes_1: -733009389
-      CollisionShapes_5: 1491757476
-      CollisionShapes_18: -999151629
-      CollisionShapes_13: 1180190687
-      CollisionShapes_0: 1626243789
+      CollisionShapes_10: -259165573
+      CollisionShapes_11: 810439091
+      CollisionShapes_2: -882106381
+      CollisionShapes_4: 298034300
+      CollisionShapes_14: 490175180
+      CollisionShapes_17: -1061902087
+      CollisionShapes_21: -752525401
+      CollisionShapes_8: -918233156
+      CollisionShapes_9: -1516423143
+      CollisionShapes_19: -966595855
+      CollisionShapes_15: 302749992
+      CollisionShapes_20: -45845782
+      CollisionShapes_3: -1976138829
+      CollisionShapes_16: 140900910
+      CollisionShapes_6: 639856317
+      CollisionShapes_7: 1874463378
+      CollisionShapes_12: 2053454666
+      CollisionShapes_1: 1358695846
+      CollisionShapes_5: -2009622357
+      CollisionShapes_18: -170198532
+      CollisionShapes_13: -4230305
+      CollisionShapes_0: -962152155
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

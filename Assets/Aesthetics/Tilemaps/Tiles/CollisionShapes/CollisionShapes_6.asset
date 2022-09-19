@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: CollisionShapes_6
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 236879508, guid: b13af796b1a4c4689898699a5d63b010, type: 3}
+  m_Sprite: {fileID: 639856317, guid: b13af796b1a4c4689898699a5d63b010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
