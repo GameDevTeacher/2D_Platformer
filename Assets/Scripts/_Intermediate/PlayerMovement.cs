@@ -7,7 +7,7 @@ namespace _Intermediate
         #region VARIABLES
 
         [Header("Movement")]
-        public float maxMoveSpeed = 6f;
+        public float maxVelocityX = 6f;
         public float acceleration = 1f;
         public float groundFriction = .3f;
         private float _moveSpeed;
@@ -26,7 +26,6 @@ namespace _Intermediate
         private int _doubleJumpValue;
         public bool _isJumping;
         private float _coyoteTimeCounter;
-
         
         [Header("Components")]
         private PlayerInput _input;
@@ -59,7 +58,7 @@ namespace _Intermediate
             UpdateMovement();
             
             
-            // CoyoteTime
+            // Double Jump & CoyoteTime
             if (_collision.IsGroundedBox() && _rigidbody2D.velocity.y < 0f )
             {
                 _isJumping = false;
@@ -103,6 +102,21 @@ namespace _Intermediate
                 _jumpTimeCounter = jumpTime;
                 _isJumping = true;
             }
+
+            if (_input.JumpPressed)
+            {
+                if (_collision.IsGroundedBox() || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime) || _doubleJumpValue > 0)
+                {
+                    _rigidbody2D.velocity = Vector2.up * jumpSpeed;
+                    _jumpTimeCounter = jumpTime;
+                    _isJumping = true;
+                }
+                else 
+                {
+                    _doubleJumpValue--;
+                }
+            }
+            
         }
 
 
@@ -116,7 +130,7 @@ namespace _Intermediate
             if (_input.MoveDirection.x != 0 /* // Only used if we have air control&& _collision.IsGroundedBox()*/)
             {
                 _moveSpeed += _input.MoveDirection.x * acceleration;
-                _moveSpeed = Mathf.Clamp(_moveSpeed, -maxMoveSpeed, maxMoveSpeed);
+                _moveSpeed = Mathf.Clamp(_moveSpeed, -maxVelocityX, maxVelocityX);
             }
             else
             {
@@ -135,7 +149,7 @@ namespace _Intermediate
             {
                 if (_jumpTimeCounter > 0)
                 {
-                    _rigidbody2D.velocity = Vector2.up *jumpSpeed;
+                    _rigidbody2D.velocity = Vector2.up * jumpSpeed;
                     _jumpTimeCounter -= Time.deltaTime;
                 }
                 else
