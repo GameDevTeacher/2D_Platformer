@@ -110,10 +110,7 @@ namespace _Intermediate
             {
                 _coyoteTimeCounter += Time.deltaTime;
             }
-            else
-            {
-                _coyoteTimeCounter = 0;
-            }
+            else { _coyoteTimeCounter = 0; }
 
 
             if (!_input.JumpPressed) return;
