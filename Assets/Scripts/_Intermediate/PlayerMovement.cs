@@ -143,26 +143,6 @@ namespace _Intermediate
             {
                 _jumpTimeCounter = 0;
             }
-
-            /*
-            if (_input.JumpValue > 0f && _isJumping)
-            {
-                if (_jumpTimeCounter > 0)
-                {
-                    _rigidbody2D.velocity = Vector2.up * jumpSpeed;
-                    _jumpTimeCounter -= Time.deltaTime;
-                }
-                else
-                {
-                    _isJumping = false;
-                }
-            }
-            if (_input.JumpValue <= 0f)
-            {
-                _isJumping = false;
-                _jumpTimeCounter = 0;
-            }
-            */
         }
         #endregion
     }

@@ -25,8 +25,6 @@ namespace _IntermediatePlus
         public bool JumpReleased { get; private set; }
         public bool JumpPressed { get; private set; }
 
-        public InputAction Jump { get; private set; }
-        
         public float InteractValue { get; private set; }
         public bool Interact { get; private set; }
 
@@ -41,8 +39,6 @@ namespace _IntermediatePlus
             JumpHeld = _inputActions.Player.Jump.inProgress;
             JumpPressed = _inputActions.Player.Jump.triggered;
             JumpReleased = _inputActions.Player.Jump.WasReleasedThisFrame();
-
-            Jump = _inputActions.Player.Jump;
 
             InteractValue = _inputActions.Player.Interact.ReadValue<float>();
             Interact = _inputActions.Player.Interact.triggered;
