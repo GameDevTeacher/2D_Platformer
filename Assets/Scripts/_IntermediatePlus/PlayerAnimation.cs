@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Animations;
 
 namespace _IntermediatePlus
 {
@@ -9,17 +7,15 @@ namespace _IntermediatePlus
     {
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
+        private PlayerInput _input;
+        private PlayerCollision _collision;
+        private Rigidbody2D _rigidbody2D;
 
-        [SerializeField] private float _minImpactForce = 20;
         private int _currentAnimationState;
-
-        public event Action<bool, float> GroundChanged;
-
         private float _lockedUntil;
-        private bool _grounded;
-        private bool _landed;
-        private bool _attacked;
-        private bool _jumpTriggered;
+        private float _landAnimationDuration;
+        private float _attackAnimationDuration;
+
         
 
         #region Cached Animations
@@ -38,21 +34,32 @@ namespace _IntermediatePlus
         private void Start()
         {
             _animator = GetComponent<Animator>();
-
-            GroundChanged += (grounded, impactForce) =>
-            {
-                _grounded = grounded;
-                _landed = impactForce >= _minImpactForce;
-            };
         }
         
         private void Update()
         {
-            _animator.Play("State1");
-            _animator.CrossFade("state1", 0f, 0, 1f);
-            
+            var _animationState = SetAnimationState();
+           
+            if (_animationState == _currentAnimationState) return;
+            _animator.CrossFade(_animationState, 0, 0);
+            _currentAnimationState = _animationState;
         }
 
-       
+        int SetAnimationState()
+        {
+            // Set a timer to make sure you cannot play a new animation until another is finished
+            if (Time.time < _lockedUntil) return _currentAnimationState;
+            
+            if (_input.Attacking) return LockStateTime(Attack, _animator.GetCurrentAnimatorClipInfo(0).Length);
+            if (_input.JumpPressed) return Jump;
+
+            if (_collision.IsGroundedBox()) return _input.MoveDirection.x == 0 ? Idle : Walk;
+            return _rigidbody2D.velocity.y > 0 ? Jump : Fall;
+            
+            int LockStateTime(int s, float t) {
+                _lockedUntil = Time.time + t;
+                return s;
+            }
+        }
     }
 }

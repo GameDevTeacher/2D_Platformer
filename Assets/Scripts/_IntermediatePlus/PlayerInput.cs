@@ -28,6 +28,8 @@ namespace _IntermediatePlus
         public float InteractValue { get; private set; }
         public bool Interact { get; private set; }
 
+        public bool Attacking { get; private set; }
+
         #endregion
         
         private void Update()
@@ -42,7 +44,8 @@ namespace _IntermediatePlus
 
             InteractValue = _inputActions.Player.Interact.ReadValue<float>();
             Interact = _inputActions.Player.Interact.triggered;
-        
+            Attacking = _inputActions.Player.Attack.triggered;
+
         }
     }
 }

@@ -32,7 +32,7 @@ namespace _Beginner
 
         private void FixedUpdate()
         {
-            _rigidbody2D.velocity = new Vector2(_input.MoveVector.x * moveSpeed, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(_input.MoveDirection.x * moveSpeed, _rigidbody2D.velocity.y);
         }
     }
 }

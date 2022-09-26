@@ -14,6 +14,12 @@ namespace _BeginnerPlus
         private bool attack;
         private float animationTimer;
         */
+
+        private static readonly int Idle = Animator.StringToHash("Player_Idle");
+        private static readonly int Walk = Animator.StringToHash("Player_Walk");
+        private static readonly int Jump = Animator.StringToHash("Player_Jump");
+        private static readonly int Fall = Animator.StringToHash("Player_Fall");
+        
         private void Start()
         {
             _animator = GetComponentInChildren<Animator>();
@@ -43,11 +49,11 @@ namespace _BeginnerPlus
 
             if (_collision.IsGroundedBox())
             {
-                _animator.Play(_input.MoveVector.x == 0 ? "Player_Idle" : "Player_Walk");
+                _animator.Play(_input.MoveVector.x == 0 ? Idle : Walk);
             }
             else
             {
-                _animator.Play(_rigidbody2D.velocity.y > 0 ? "Player_Jump" : "Player_Fall");
+                _animator.Play(_rigidbody2D.velocity.y > 0 ? Jump : Fall);
             }
         }
     }
