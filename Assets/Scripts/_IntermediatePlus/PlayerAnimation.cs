@@ -14,9 +14,16 @@ namespace _IntermediatePlus
         private int _currentAnimationState;
 
         public event Action<bool, float> GroundChanged;
+
+        private float _lockedUntil;
         private bool _grounded;
         private bool _landed;
+        private bool _attacked;
+        private bool _jumpTriggered;
         
+
+        #region Cached Animations
+
         private static readonly int Idle = Animator.StringToHash("Idle");
         private static readonly int Walk = Animator.StringToHash("Walk");
         private static readonly int Jump = Animator.StringToHash("Jump");
@@ -24,6 +31,9 @@ namespace _IntermediatePlus
         private static readonly int Land = Animator.StringToHash("Land");
         private static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly int Crouch = Animator.StringToHash("Crouch");
+
+        #endregion
+
         
         private void Start()
         {
@@ -39,6 +49,7 @@ namespace _IntermediatePlus
         private void Update()
         {
             _animator.Play("State1");
+            _animator.CrossFade("state1", 0f, 0, 1f);
             
         }
 

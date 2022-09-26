@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace _Beginner
+namespace _BeginnerPlus
 {
     public class PlayerCollision : MonoBehaviour
     {
