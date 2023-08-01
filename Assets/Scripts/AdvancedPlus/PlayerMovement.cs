@@ -1,6 +1,7 @@
 using UnityEngine;
+using PlayerCollision = _Intermediate.PlayerCollision;
 
-namespace _IntermediatePlus
+namespace AdvancedPlus
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -26,10 +27,9 @@ namespace _IntermediatePlus
         public int _doubleJumpValue;
         
         public bool _isJumping;
-     
-        
-        [Header("Components")]
-        private _Intermediate.PlayerInput _input;
+
+
+        [Header("Components")] private PlayerInputCopy _input;
         private _Intermediate.PlayerCollision _collision;
         private Rigidbody2D _rigidbody2D;
 
@@ -40,8 +40,8 @@ namespace _IntermediatePlus
 
         private void Start()
         {
-            _input = GetComponent<_Intermediate.PlayerInput>();
-            _collision = GetComponent<_Intermediate.PlayerCollision>();
+            _input = GetComponent<PlayerInputCopy>();
+            _collision = GetComponent<PlayerCollision>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
         
@@ -72,9 +72,9 @@ namespace _IntermediatePlus
             UpdateGravity();
 
             #region UPDATE MOVESPEED 
-            if (_input.MoveDirection.x != 0 /* // Only used if we have air control && _collision.IsGroundedBox()*/)
+            if (_input.Move().x != 0 /* // Only used if we have air control&& _collision.IsGroundedBox()*/)
             {
-                _horizontalMoveSpeed += _input.MoveDirection.x * groundAcceleration;
+                _horizontalMoveSpeed += _input.Move().x * groundAcceleration;
                 _horizontalMoveSpeed = Mathf.Clamp(_horizontalMoveSpeed, -maxVelocityX, maxVelocityX);
             }
             else
@@ -113,7 +113,7 @@ namespace _IntermediatePlus
             else { _coyoteTimeCounter = 0; }
 
 
-            if (!_input.JumpPressed) return;
+            if (!_input.Jump().triggered) return;
             
             if (_collision.IsGroundedBox() || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime))
             {
@@ -131,7 +131,7 @@ namespace _IntermediatePlus
 
         private void VariableJumpHeight()
         {
-            if (_input.JumpHeld && _isJumping)
+            if (_input.Jump().IsPressed() && _isJumping)
             {
                 if (_jumpTimeCounter > 0)
                 {
