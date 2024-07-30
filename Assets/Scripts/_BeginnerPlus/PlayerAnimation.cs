@@ -53,7 +53,7 @@ namespace _BeginnerPlus
             }
             else
             {
-                _animator.Play(_rigidbody2D.velocity.y > 0 ? Jump : Fall);
+                _animator.Play(_rigidbody2D.linearVelocity.y > 0 ? Jump : Fall);
             }
         }
     }

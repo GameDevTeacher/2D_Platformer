@@ -45,7 +45,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "be6a75ff-59bb-4398-9bd6-d5ee4dff0706",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

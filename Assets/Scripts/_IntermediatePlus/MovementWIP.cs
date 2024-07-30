@@ -76,7 +76,7 @@ namespace _IntermediatePlus
         
         
         // CoyoteTime
-        if (_collision.IsGroundedBox() && _rigidbody2D.velocity.y < 0f )
+        if (_collision.IsGroundedBox() && _rigidbody2D.linearVelocity.y < 0f )
         {
             _isJumping = false;
             _doubleJumpValue = maxDoubleJumpValue;
@@ -91,7 +91,7 @@ namespace _IntermediatePlus
     
     private void UpdateGravity()
     {
-        _velocity.y = Mathf.Clamp(_rigidbody2D.velocity.y, -maxVelocityY, maxVelocityY);
+        _velocity.y = Mathf.Clamp(_rigidbody2D.linearVelocity.y, -maxVelocityY, maxVelocityY);
     }
 
     private void UpdateJumping()
@@ -114,7 +114,7 @@ namespace _IntermediatePlus
         // Check if We are able to jump
         if (_input.JumpPressed && (_collision.IsGroundedBox() || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime) || _doubleJumpValue > 0))
         {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
+            _rigidbody2D.linearVelocity = new Vector2(_rigidbody2D.linearVelocity.x, jumpSpeed);
             _doubleJumpValue--;
             _jumpTimeCounter = jumpTime;
             _isJumping = true;
@@ -125,7 +125,7 @@ namespace _IntermediatePlus
     private void UpdateMovement()
     {
         // Store the Players Velocity in Separate Vector2
-        _velocity = _rigidbody2D.velocity;
+        _velocity = _rigidbody2D.linearVelocity;
         UpdateGravity();
 
         #region UPDATE MOVESPEED 
@@ -155,7 +155,7 @@ namespace _IntermediatePlus
         _velocity.x = _moveSpeed;
         #endregion
         
-        _rigidbody2D.velocity = _velocity;
+        _rigidbody2D.linearVelocity = _velocity;
     }
 
     private void LongJump()
@@ -164,7 +164,7 @@ namespace _IntermediatePlus
         {
             if (_jumpTimeCounter > 0)
             {
-                _rigidbody2D.velocity = Vector2.up *jumpSpeed;
+                _rigidbody2D.linearVelocity = Vector2.up *jumpSpeed;
                 _jumpTimeCounter -= Time.deltaTime;
             }
             else

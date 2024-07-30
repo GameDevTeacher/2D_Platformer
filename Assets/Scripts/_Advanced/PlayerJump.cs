@@ -99,12 +99,12 @@ namespace _Advanced
 
          private void FixedUpdate()
          {
-             _velocity = _rigidbody2D.velocity;
+             _velocity = _rigidbody2D.linearVelocity;
 
              if (_desiredJump)
              {
                  Jump();
-                 _rigidbody2D.velocity = _velocity;
+                 _rigidbody2D.linearVelocity = _velocity;
                  return;
              }
              
@@ -113,7 +113,7 @@ namespace _Advanced
 
          private void CalculateGravity()
          {
-             if (_rigidbody2D.velocity.y > 0.01f)
+             if (_rigidbody2D.linearVelocity.y > 0.01f)
              {
                  if (onGround)
                  {
@@ -138,7 +138,7 @@ namespace _Advanced
                      }
                  }
              }
-             else if (_rigidbody2D.velocity.y < -0.01f)
+             else if (_rigidbody2D.linearVelocity.y < -0.01f)
              {
                  if (onGround)
                      gravityMultiplier = _defaultGravityScale;
@@ -155,7 +155,7 @@ namespace _Advanced
                  gravityMultiplier = _defaultGravityScale;
              }
 
-             _rigidbody2D.velocity = new Vector2(_velocity.x, Mathf.Clamp(_velocity.y, -speedLimit, 100));
+             _rigidbody2D.linearVelocity = new Vector2(_velocity.x, Mathf.Clamp(_velocity.y, -speedLimit, 100));
          }
 
          private void Jump()
@@ -176,7 +176,7 @@ namespace _Advanced
                  }
                  else if (_velocity.y < 0f)
                  {
-                     jumpSpeed += Mathf.Abs(_rigidbody2D.velocity.y);
+                     jumpSpeed += Mathf.Abs(_rigidbody2D.linearVelocity.y);
                  }
 
                  _velocity.y += jumpSpeed;

@@ -26,13 +26,13 @@ namespace _BeginnerPlus
 
             if (_input.JumpPressed)
             {
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
+                _rigidbody2D.linearVelocity = new Vector2(_rigidbody2D.linearVelocity.x, jumpSpeed);
             }
         }
 
         private void FixedUpdate()
         {
-            _rigidbody2D.velocity = new Vector2(_input.MoveVector.x * moveSpeed, _rigidbody2D.velocity.y);
+            _rigidbody2D.linearVelocity = new Vector2(_input.MoveVector.x * moveSpeed, _rigidbody2D.linearVelocity.y);
         }
     }
 }

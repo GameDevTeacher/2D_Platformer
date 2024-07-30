@@ -55,7 +55,7 @@ namespace _Advanced
         private void FixedUpdate()
         {
             onGround = _collision.IsGrounded();
-            velocity = _rigidbody2D.velocity;
+            velocity = _rigidbody2D.linearVelocity;
 
             if (onGround)
             {
@@ -90,13 +90,13 @@ namespace _Advanced
             }
 
             velocity.x = Mathf.MoveTowards(velocity.x, _desiredVelocity.x, _maxSpeedChange);
-            _rigidbody2D.velocity = velocity;
+            _rigidbody2D.linearVelocity = velocity;
         }
         private void RunWithoutAcceleration()
         {
             velocity.x = _desiredVelocity.x;
 
-            _rigidbody2D.velocity = velocity;
+            _rigidbody2D.linearVelocity = velocity;
         }
     }
 }

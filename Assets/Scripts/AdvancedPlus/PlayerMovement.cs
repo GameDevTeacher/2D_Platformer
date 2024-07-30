@@ -68,7 +68,7 @@ namespace AdvancedPlus
         private void UpdateMovement()
         {
             // Store the Players Velocity in Separate Vector2
-            _currentVelocity = _rigidbody2D.velocity;
+            _currentVelocity = _rigidbody2D.linearVelocity;
             UpdateGravity();
 
             #region UPDATE MOVESPEED 
@@ -85,18 +85,18 @@ namespace AdvancedPlus
             _currentVelocity.x = _horizontalMoveSpeed;
             #endregion
             
-            _rigidbody2D.velocity = _currentVelocity;
+            _rigidbody2D.linearVelocity = _currentVelocity;
         }
         
         private void UpdateGravity()
         {
-            _currentVelocity.y = Mathf.Clamp(_rigidbody2D.velocity.y, -maxVelocityY, maxVelocityY);
+            _currentVelocity.y = Mathf.Clamp(_rigidbody2D.linearVelocity.y, -maxVelocityY, maxVelocityY);
         }
 
         private void UpdateJumping()
         {
             // Double Jump & CoyoteTime
-            if (_collision.IsGroundedBox() && _rigidbody2D.velocity.y <= 0f )
+            if (_collision.IsGroundedBox() && _rigidbody2D.linearVelocity.y <= 0f )
             {
                 _isJumping = false;
                 _doubleJumpValue = maxDoubleJumpValue;
@@ -117,13 +117,13 @@ namespace AdvancedPlus
             
             if (_collision.IsGroundedBox() || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime))
             {
-                _rigidbody2D.velocity = Vector2.up * jumpSpeed;
+                _rigidbody2D.linearVelocity = Vector2.up * jumpSpeed;
                 _jumpTimeCounter = jumpTime;
                 _isJumping = true;
             }
             else if (_doubleJumpValue > 0)
             {
-                _rigidbody2D.velocity = Vector2.up * jumpSpeed;
+                _rigidbody2D.linearVelocity = Vector2.up * jumpSpeed;
                 _doubleJumpValue--;
                 //_isJumping = false;
             }
@@ -135,7 +135,7 @@ namespace AdvancedPlus
             {
                 if (_jumpTimeCounter > 0)
                 {
-                    _rigidbody2D.velocity = Vector2.up * jumpSpeed;
+                    _rigidbody2D.linearVelocity = Vector2.up * jumpSpeed;
                     _jumpTimeCounter -= Time.deltaTime;
                 }
             }

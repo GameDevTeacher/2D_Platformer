@@ -14,7 +14,7 @@ public class cinemacineTester : MonoBehaviour
 
     void Update()
     {
-        _VirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight = _rb.velocity != Vector2.zero ? 0.22f : 0f;
+        _VirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight = _rb.linearVelocity != Vector2.zero ? 0.22f : 0f;
 
         if (input.Move().x == 0)
         {

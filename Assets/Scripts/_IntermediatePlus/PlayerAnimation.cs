@@ -54,7 +54,7 @@ namespace _IntermediatePlus
             if (_input.JumpPressed) return Jump;
 
             if (_collision.IsGroundedBox()) return _input.MoveDirection.x == 0 ? Idle : Walk;
-            return _rigidbody2D.velocity.y > 0 ? Jump : Fall;
+            return _rigidbody2D.linearVelocity.y > 0 ? Jump : Fall;
             
             int LockStateTime(int s, float t) {
                 _lockedUntil = Time.time + t;
